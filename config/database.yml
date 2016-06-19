@@ -51,11 +51,4 @@ test:
   template: template0
 
 production:
-  adapter:  postgresql
-  host:     localhost
-  encoding: unicode
   database: butler-checkin_production
-  pool:     5
-  username: butler-checkin
-  password:
-  template: template0
