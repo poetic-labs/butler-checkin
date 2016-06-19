@@ -1,0 +1,9 @@
+= simple_form_for(@checkin) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :notes
+    = f.input :short_term_goal
+
+  .form-actions
+    = f.button :submit
