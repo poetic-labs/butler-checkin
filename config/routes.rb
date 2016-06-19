@@ -5,5 +5,6 @@ Rails.application.routes.draw do
 
   resources :users
   resources :notes, only: [:new, :create]
+  resources :checkins, only: [:new, :create]
 
 end

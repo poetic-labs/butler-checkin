@@ -1,7 +1,19 @@
 .row
   .col-md-4
     .h2 Checkins
-    %p hey
+    = render "checkins/form"
+    - @checkins.all.each do |checkin|
+      .display_checkin
+        .checkin_date
+          = checkin.created_at
+        .checkin_notes
+          %strong Checkin Notes
+          %br
+          = checkin.notes
+        .checkin_goal
+          %strong Short Term Goal
+          %br
+          = checkin.short_term_goal
 
   .col-md-4
     .h2 Notes

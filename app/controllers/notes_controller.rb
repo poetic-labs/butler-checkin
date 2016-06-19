@@ -10,6 +10,7 @@ class NotesController < ApplicationController
     else
       alert = note.errors.full_messages
     end
+
     redirect_to :back, alert: alert, notice: notice
   end
 
