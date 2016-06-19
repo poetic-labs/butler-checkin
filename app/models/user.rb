@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   has_many :checkins
+  has_many :notes
+  has_many :created_notes, foreign_key: :creator_id, class_name: :user
 
   enum role: [:user, :vip, :admin]
   after_initialize :set_default_role, :if => :new_record?

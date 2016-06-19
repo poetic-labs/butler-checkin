@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Public:
+  = @note.public
+%p
+  %b Text:
+  = @note.text
+%p
+  %b Created by:
+  = @note.created_by
+%p
+  %b User:
+  = @note.user
+
+= link_to 'Edit', edit_note_path(@note)
+\|
+= link_to 'Back', notes_path
