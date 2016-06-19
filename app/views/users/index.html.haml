@@ -1,1 +1,8 @@
-index.html.haml
+%table
+  %thead
+    %tr
+      %td Name
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= link_to user.name, user

@@ -2,10 +2,9 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :public
     = f.input :text
-    = f.association :created_by
-    = f.association :user
-
-  .form-actions
-    = f.button :submit
+    = f.input :user_id, as: :hidden, input_html: {value: @user.id}
+    %div
+      .pull-left= f.input :public
+      .pull-right= f.button :submit
+      .clearfix

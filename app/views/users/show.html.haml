@@ -1,0 +1,31 @@
+.row
+  .col-md-4
+    .h2 Checkins
+    %p hey
+
+  .col-md-4
+    .h2 Notes
+    = render "notes/form"
+
+    - @notes.all.each do |note|
+      .display_note
+        .note_type= note.public? ? 'Public' : 'Private'
+        .note_text= note.text
+        .note_creator= note.creator.name
+
+  .col-md-4
+    .h2 Personal Plan
+    %p
+      %strong What are your career aspirations?
+      %br
+      Continuing to development software that helps people and to be a mentor to new developers.
+
+    %p
+      %strong What do you want to personally achieve?
+      %br
+      Overcome my anxiety and be able to speak confidently about what I am passionate about with others.
+
+    %p
+      %strong Learning: What tools, technologies or ideas are you passionate about that you would like to build your skill set around?
+      %br
+      VIM plugins, project planning, database structure and scalability, and test driven development.
