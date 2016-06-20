@@ -1,41 +1,16 @@
-.row.page-header
-  .col-md-4
-    %h1= @user.name
-  .col-md-4
-    %strong Start Date:
-    = @user.start_date
-
-    %br
-
-    %strong Hours Logged:
-    x,xxx hours ( 15% )
+= render 'header'
 
 .row
   .col-md-4
     .h2 Checkins
     = render "checkins/form"
-    - @checkins.all.each do |checkin|
-      .display_checkin
-        .checkin_date
-          = checkin.created_at
-        .checkin_notes
-          %strong Checkin Notes
-          %br
-          = checkin.notes
-        .checkin_goal
-          %strong Short Term Goal
-          %br
-          = checkin.short_term_goal
+    %br
+    = render "checkins/index"
 
   .col-md-4
     .h2 Notes
     = render "notes/form"
-
-    - @notes.all.each do |note|
-      .display_note
-        .note_type= note.public? ? 'Public' : 'Private'
-        .note_text= note.text
-        .note_creator= note.creator.name
+    = render "notes/index"
 
   .col-md-4
     .h2 Personal Plan

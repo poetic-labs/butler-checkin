@@ -1,8 +1,10 @@
-%table
+%table.table
   %thead
     %tr
       %td Name
+      %td Last Checkin
   %tbody
     - @users.each do |user|
       %tr
         %td= link_to user.name, user
+        %td= user.last_checkin_date.present? ? small_display_date(user.last_checkin_date) : ''

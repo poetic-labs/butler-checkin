@@ -1,0 +1,14 @@
+- @notes.all.each do |note|
+  .display_note
+    .note_type
+      - if note.public?
+        .label.label-info Public
+      - else
+        .label.label-default Private
+    .note_text= note.text
+    .note_creator
+      %small
+        %em
+          By
+          %strong #{note.creator.name}
+          on #{display_date(note.created_at)}

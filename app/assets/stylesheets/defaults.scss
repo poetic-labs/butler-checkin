@@ -2,11 +2,17 @@
 // General
 // ============================================
 
+textarea.form-control.tall_textarea {
+  height: 150px;
+}
+
 .display_note,
 .display_checkin {
-  padding: 15px 0;
+  padding: 15px;
   margin: 15px 0;
-  border-top: 1px solid #999;
+  border: 1px solid #ddd;
+  border-radius: 4px 4px 0 0;
+  background: #F7F7F7;
 }
 
 // ============================================
@@ -19,7 +25,9 @@
     margin: 15px 0;
   }
 
-  .checkin_date {}
+  .checkin_date {
+    margin: -18px 0 10px -16px;
+  }
   .checkin_notes {}
   .checkin_goal {}
 }
@@ -31,7 +39,11 @@
 
 .display_note {
 
-  .note_type {}
+  .note_type {
+    margin: -18px 0 10px -16px;
+  }
   .note_text {}
-  .note_creator {}
+  .note_creator {
+    margin-top: 10px;
+  }
 }

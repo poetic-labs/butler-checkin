@@ -1,0 +1,12 @@
+- @checkins.all.each do |checkin|
+  .display_checkin
+    .checkin_date
+      .label.label-info= small_display_date(checkin.created_at)
+    .checkin_notes
+      = checkin.notes
+      %hr
+    .checkin_goal
+      %strong Short Term Goal
+      %br
+      = checkin.short_term_goal
+
