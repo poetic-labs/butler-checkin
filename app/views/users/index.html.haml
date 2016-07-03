@@ -1,10 +1,19 @@
+%h2 Incomplete this month
 %table.table
   %thead
     %tr
       %td Name
-      %td Last Checkin
   %tbody
-    - @users.each do |user|
+    - @users_incomplete.each do |user|
       %tr
         %td= link_to user.name, user
-        %td= user.last_checkin_date.present? ? small_display_date(user.last_checkin_date) : ''
+
+%h2 Complete this month
+%table.table
+  %thead
+    %tr
+      %td Name
+  %tbody
+    - @users_complete.each do |user|
+      %tr
+        %td= link_to user.name, user

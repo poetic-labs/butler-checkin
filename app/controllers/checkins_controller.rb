@@ -1,10 +1,13 @@
 class CheckinsController < ApplicationController
   before_action :authenticate_user!
-  def create
-    checkin = Checkin.new(checkin_params)
+  def update
+    checkin = Checkin.find(params[:id])
 
-    if checkin.save
-      notice = 'Checkin was successfully created'
+    checkin.complete = true if params[:complete].present?
+    checkin.missed = true if params[:missed].present?
+
+    if checkin.update_attributes(checkin_params)
+      notice = 'Checkin was successfully updated'
     else
       alert = checkin.errors.full_messages
     end
@@ -14,6 +17,6 @@ class CheckinsController < ApplicationController
 
   private
     def checkin_params
-      params.require(:checkin).permit(:notes, :short_term_goal, :user_id)
+      params.require(:checkin).permit(:details, :short_term_goal, :user_id, :missed, :complete)
     end
 end

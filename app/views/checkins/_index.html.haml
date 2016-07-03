@@ -1,12 +1,69 @@
 - @checkins.all.each do |checkin|
-  .display_checkin
-    .checkin_date
-      .label.label-info= small_display_date(checkin.created_at)
-    .checkin_notes
-      = checkin.notes
-      %hr
-    .checkin_goal
-      %strong Short Term Goal
-      %br
-      = checkin.short_term_goal
+  - if checkin.complete? || checkin.missed?
+    .display_checkin
+      .checkin_date.pull-left
+        .label.label-default= small_display_date(checkin.month)
+      .checkin_status.pull-right
+        - if checkin.missed?
+          .label.label-danger  Missed
+        - elsif checkin.complete?
+          .label.label-info Complete
+
+      .clearfix
+
+      .row
+        .col-lg-7
+          .checkin_notes
+            = checkin.details
+            %hr
+          .checkin_goal
+            %strong Short Term Goal
+            %br
+            = checkin.short_term_goal
+
+        .col-lg-5
+          %ul
+            - checkin.notes.each do |note|
+              %li= note.text
+
+  - else
+    .display_checkin
+      .checkin_date.pull-left
+        .label.label-default= small_display_date(checkin.month)
+
+      .clearfix
+
+      .row
+        .col-lg-7
+
+          = simple_form_for(checkin) do |f|
+            = f.error_notification
+
+            .checkin_notes
+              = f.input :details, input_html: {class: 'tall_textarea'}
+
+            .checkin_goal
+              = f.input :short_term_goal
+
+            %hr
+
+            = f.input :user_id, as: :hidden, input_html: {value: @user.id}
+            = f.button :submit, 'missed', name: 'missed', class: 'button_as_text'
+            = f.button :submit, 'Mark as Complete', name: 'complete', class: 'btn-primary pull-right'
+            = f.button :submit, 'update', class: 'button_as_text pull-right'
+
+        .col-lg-5
+          = simple_form_for(@note) do |f|
+
+            .form-inputs
+              = f.input :text, label: 'Notes', as: 'string'
+              = f.input :user_id, as: :hidden, input_html: {value: @user.id}
+              = f.input :checkin_id, as: :hidden, input_html: {value: checkin.id}
+              .pull-right= f.button :submit
+              .clearfix
+
+          %ul
+            - checkin.notes.each do |note|
+              %li= note.text
+
 

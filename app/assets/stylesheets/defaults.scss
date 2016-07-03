@@ -2,6 +2,10 @@
 // General
 // ============================================
 
+main {
+  margin-top: 0px;
+}
+
 textarea.form-control.tall_textarea {
   height: 150px;
 }
@@ -15,19 +19,25 @@ textarea.form-control.tall_textarea {
   background: #F7F7F7;
 }
 
+.button_as_text {
+  border: none;
+  background: none;
+}
+
 // ============================================
 // Checkins
 // ============================================
 
 .display_checkin {
 
-  div {
-    margin: 15px 0;
-  }
-
   .checkin_date {
     margin: -18px 0 10px -16px;
   }
+
+  .checkin_status {
+    margin: -18px -17px 0 0;
+  }
+
   .checkin_notes {}
   .checkin_goal {}
 }
