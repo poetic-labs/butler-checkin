@@ -44,7 +44,11 @@ class User < ActiveRecord::Base
   end
 
   def this_month_checkin_complete?
-    true
+    this_month = Date.today.month
+    last_done_checkin = checkins.done.last
+    last_done_checkin_month = last_done_checkin.month.month # 'month' is a date attribute on the model
+
+    ( this_month == last_done_checkin_month ) ? true : false
   end
 
   def build_default_checkins
