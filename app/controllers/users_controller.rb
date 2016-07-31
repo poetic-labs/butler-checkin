@@ -2,8 +2,8 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @users_incomplete = User.incomplete
-    @users_complete = User.complete
+    @users_incomplete = User.incomplete.order('name')
+    @users_complete = User.complete.order('name')
   end
 
   def show

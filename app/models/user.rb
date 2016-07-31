@@ -12,16 +12,20 @@ class User < ActiveRecord::Base
     self.role ||= :user
   end
 
+  def self.active
+    User.where(active: true)
+  end
+
   def self.incomplete
     month_number = Date.today.month
     month = "2016-#{month_number}-01"
-    User.joins(:checkins).where(checkins: {month: month, complete: nil})
+    User.active.joins(:checkins).where(checkins: {month: month, complete: nil})
   end
 
   def self.complete
     month_number = Date.today.month
     month = "2016-#{month_number}-01"
-    User.joins(:checkins).where(checkins: {month: month, complete: true})
+    User.active.joins(:checkins).where(checkins: {month: month, complete: true})
   end
 
   # Include default devise modules. Others available are:
@@ -30,7 +34,17 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   def current_checkins
-    checkins.where("month <= ?", Date.today).order('month desc')
+    if this_month_checkin_complete?
+      date = Date.today + 1.month
+    else
+      date = Date.today
+    end
+
+    checkins.where("month <= ?", date).order('month desc')
+  end
+
+  def this_month_checkin_complete?
+    true
   end
 
   def build_default_checkins

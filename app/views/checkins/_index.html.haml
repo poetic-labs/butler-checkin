@@ -14,7 +14,8 @@
       .row
         .col-lg-7
           .checkin_notes
-            = checkin.details
+            = checkin.id
+            = simple_format(checkin.details)
             %hr
           .checkin_goal
             %strong Short Term Goal
@@ -35,6 +36,7 @@
 
       .row
         .col-lg-7
+          = checkin.id
 
           = simple_form_for(checkin) do |f|
             = f.error_notification
