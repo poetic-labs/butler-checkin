@@ -18,13 +18,15 @@ class User < ActiveRecord::Base
 
   def self.incomplete
     month_number = Date.today.month
-    month = "2016-#{month_number}-01"
+    year_number = Date.today.year
+    month = "#{year_number}-#{month_number}-01"
     User.active.joins(:checkins).where(checkins: {month: month, complete: nil})
   end
 
   def self.complete
     month_number = Date.today.month
-    month = "2016-#{month_number}-01"
+    year_number = Date.today.year
+    month = "#{year_number}-#{month_number}-01"
     User.active.joins(:checkins).where(checkins: {month: month, complete: true})
   end
 
