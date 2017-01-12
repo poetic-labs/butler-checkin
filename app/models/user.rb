@@ -56,7 +56,7 @@ class User < ActiveRecord::Base
   def build_default_checkins
     months = [1,2,3,4,5,6,7,8,9,10,11,12]
     months.each do |month|
-      self.checkins.create(month: "2016-#{month}-01".to_date)
+      self.checkins.create(month: "2017-#{month}-01".to_date)
     end
   end
 end
